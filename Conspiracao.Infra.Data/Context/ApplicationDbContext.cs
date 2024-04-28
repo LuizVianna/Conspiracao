@@ -14,6 +14,7 @@ namespace Conspiracao.Infra.Data.Context
 
         public DbSet<Item> Item { get; set; }
         public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
