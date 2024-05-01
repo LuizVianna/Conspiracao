@@ -41,7 +41,7 @@ namespace Conspiracao.Infra.Data.Identity
 
             if (usuario == null) return false;
 
-            using var hmac = new HMACSHA3_512(usuario.PasswordSalt);
+            using var hmac = new HMACSHA512(usuario.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(senha));
 
             for (var i = 0; i < computedHash.Length; i++)

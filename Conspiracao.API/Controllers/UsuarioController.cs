@@ -39,24 +39,26 @@ namespace Conspiracao.API.Controllers
             return new UserToken { Token = token };
         }
 
-        //public async Task<ActionResult<UserToken>> Selecionar(LoginModel loginModel)
-        //{
-        //    var existe = await _authenticateService.UserExist(loginModel.Email);
-        //    if (!existe) return Unauthorized("Usuário não existe na base de dados!");
 
-        //    var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
+        [HttpPost("login")]
+        public async Task<ActionResult<UserToken>> Login(LoginModel loginModel)
+        {
+            var existe = await _authenticateService.UserExist(loginModel.Email);
+            if (!existe) return Unauthorized("Usuário não existe na base de dados!");
 
-        //    if (!result) return Unauthorized("Usuário ou senha inválido!");
+            var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
 
-        //    var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
+            if (!result) return Unauthorized("Usuário ou senha inválido!");
 
-        //    var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
+            var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
 
-        //    return new UserToken
-        //    {
-        //        Token = token
-        //    };
-        //}
+            var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
+
+            return new UserToken
+            {
+                Token = token
+            };
+        }
 
     }
 }
