@@ -38,8 +38,8 @@ namespace Conspiracao.Application.Services
         public async Task<UsuarioDTO> Incluir(UsuarioDTO usuarioDTO)
         {
             var usuario = _mapper.Map<Usuario>(usuarioDTO);
-            var usuarioAlterado = await _usuarioRepository.Incluir(usuario);
-            return _mapper.Map<UsuarioDTO>(usuarioAlterado);
+            var usuarioIncluido = await _usuarioRepository.Incluir(usuario);
+            return _mapper.Map<UsuarioDTO>(usuarioIncluido);
         }
 
         public async Task<UsuarioDTO> SelecionarAsync(int id)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Conspiracao.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace Conspiracao.Domain.Account
         Task<bool> AuthenticateAsync(string email, string senha);
         Task<bool> UserExist(string email);
         public string GenerateToken(int id, string email);
-
+        Task<Usuario> GetUserByEmail(string email);
     }
 }
