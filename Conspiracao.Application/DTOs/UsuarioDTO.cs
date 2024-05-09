@@ -10,7 +10,7 @@ namespace Conspiracao.Application.DTOs
 {
     public class UsuarioDTO
     {
-        public int Id { get; set; }
+        // public int Id { get; set; }
 
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [MaxLength(250, ErrorMessage = "O nome não pode ter mais de 250 caracteres.")]

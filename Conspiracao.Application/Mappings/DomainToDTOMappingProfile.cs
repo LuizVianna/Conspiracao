@@ -15,7 +15,6 @@ namespace Conspiracao.Application.Mappings
         {
             CreateMap<Pedido, PedidoDTO>().ReverseMap();
             CreateMap<Item, ItemDTO>().ReverseMap();
-            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
         }
     }
 }
