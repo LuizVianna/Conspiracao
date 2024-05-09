@@ -1,4 +1,5 @@
 ﻿using Conspiracao.Domain.Account;
+using Conspiracao.Domain.Entities;
 using Conspiracao.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Conspiracao.Infra.Data.Identity
 {
-    internal class AuthenticateService : IAuthenticate
+    public class AuthenticateService : IAuthenticate
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
@@ -40,7 +41,7 @@ namespace Conspiracao.Infra.Data.Identity
 
             if (usuario == null) return false;
 
-            using var hmac = new HMACSHA3_512(usuario.PasswordSalt);
+            using var hmac = new HMACSHA512(usuario.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(senha));
 
             for (var i = 0; i < computedHash.Length; i++)
@@ -77,6 +78,11 @@ namespace Conspiracao.Infra.Data.Identity
 
             return new JwtSecurityTokenHandler().WriteToken(token);
 
+        }
+
+        public async Task<Usuario> GetUserByEmail(string email)
+        {
+            return await _context.Usuario.Where(x => x.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
         }
 
         public async Task<bool> UserExist(string email)
