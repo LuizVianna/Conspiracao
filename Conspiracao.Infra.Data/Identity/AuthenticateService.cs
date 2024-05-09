@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Conspiracao.Infra.Data.Identity
 {
-    internal class AuthenticateService : IAuthenticate
+    public class AuthenticateService : IAuthenticate
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;

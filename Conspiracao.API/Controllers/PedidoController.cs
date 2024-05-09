@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Conspiracao.Application.DTOs;
 using Conspiracao.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conspiracao.API.Controllers
@@ -16,6 +17,7 @@ namespace Conspiracao.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Incluir(PedidoDTO pedidoDto)
         {
             var pedidoIncluido = await _pedidoService.Incluir(pedidoDto);

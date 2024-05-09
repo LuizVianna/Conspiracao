@@ -1,8 +1,10 @@
 ﻿using Conspiracao.Application.Interfaces;
 using Conspiracao.Application.Mappings;
 using Conspiracao.Application.Services;
+using Conspiracao.Domain.Account;
 using Conspiracao.Domain.Interfaces;
 using Conspiracao.Infra.Data.Context;
+using Conspiracao.Infra.Data.Identity;
 using Conspiracao.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -55,10 +57,14 @@ namespace Conspiracao.Infra.IoC
             //Repositories
             service.AddScoped<IPedidoRepository, PedidoRepository>();
             service.AddScoped<IItemRepository, ItemRepository>();
+            service.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
 
             //Services
             service.AddScoped<IItemService, ItemService>();
             service.AddScoped<IPedidoService, PedidoService>();
+            service.AddScoped<IUsuarioService, UsuarioService>();
+            service.AddScoped<IAuthenticate, AuthenticateService>();
 
             return service;
         }
