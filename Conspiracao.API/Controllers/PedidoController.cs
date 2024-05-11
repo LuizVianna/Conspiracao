@@ -17,7 +17,7 @@ namespace Conspiracao.API.Controllers
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult> Incluir(PedidoDTO pedidoDto)
         {
             var pedidoIncluido = await _pedidoService.Incluir(pedidoDto);
