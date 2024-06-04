@@ -2,6 +2,7 @@
 using Conspiracao.Application.DTOs;
 using Conspiracao.Application.Interfaces;
 using Conspiracao.Domain.Account;
+using Conspiracao.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Conspiracao.API.Controllers
@@ -43,14 +44,17 @@ namespace Conspiracao.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserToken>> Login(LoginModel loginModel)
         {
-            var existe = await _authenticateService.UserExist(loginModel.Email);
-            if (!existe) return Unauthorized("Usuário não existe na base de dados!");
+            //var existe = await _authenticateService.UserExist(loginModel.Email);
+            //if (!existe) return Unauthorized("Usuário não existe na base de dados!");
 
-            var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
+            var usuario = new Usuario("teste@teste.com.br", "teste@teste.com.br");
+            usuario.Id = 12;
 
-            if (!result) return Unauthorized("Usuário ou senha inválido!");
+            //var result = await _authenticateService.AuthenticateAsync(loginModel.Email, loginModel.Password);
 
-            var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
+            //if (!result) return Unauthorized("Usuário ou senha inválido!");
+
+            //var usuario = await _authenticateService.GetUserByEmail(loginModel.Email);
 
             var token = _authenticateService.GenerateToken(usuario.Id, usuario.Email);
 

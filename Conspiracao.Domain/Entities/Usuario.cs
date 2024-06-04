@@ -9,7 +9,7 @@ namespace Conspiracao.Domain.Entities
 {
     public class Usuario
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
         public byte[] PasswordHash { get; private set; }

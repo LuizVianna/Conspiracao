@@ -18,9 +18,10 @@ namespace Conspiracao.Infra.IoC
                 {
                     Name = "Autorization",
                     Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Json Web Token (JWT) is an open standard RFC (7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.",
+                    Description = "JWT Authorization Header - utilizado com Bearer Authentication.\\r\\n\\r\\n\" +\r\n                        \"Digite 'Bearer' [espaço] e então seu token no campo abaixo.\\r\\n\\r\\n\" +\r\n                        \"Exemplo (informar sem as aspas): 'Bearer 12345abcdef'",
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement(){
